@@ -16,6 +16,9 @@ if theme == "Dark":
             background-color: #121212;
             color: white;
         }
+        .stApp {
+            background-color: #121212;
+        }
         .stButton>button {
             background-color: #444;
             color: white;
