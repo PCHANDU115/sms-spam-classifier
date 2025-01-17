@@ -172,9 +172,12 @@ elif option == "Predict SMS":
     message = st.text_input("✏️ Enter an SMS message:")
     model_name = st.selectbox("🛠️ Choose a model", ["SVM", "CatBoost"])
     if st.button("🔍 Predict"):
-        if vectorizer and (svm_model or catboost_model):
-            with st.spinner("Predicting... Please wait."):
-                prediction = predict_message(message, model_name)
-            st.success(f"📋 The message is classified as: **{prediction}**")
+        if message:  # Check if a message is entered
+            if vectorizer and (svm_model or catboost_model):
+                with st.spinner("Predicting... Please wait."):
+                    prediction = predict_message(message, model_name)
+                st.success(f"📋 The message is classified as: **{prediction}**")
+            else:
+                st.error("❌ Models not loaded! Please train them first.")
         else:
-            st.error("❌ Models not loaded! Please train them first.")
+            st.error("❌ Please enter a message before predicting.")
