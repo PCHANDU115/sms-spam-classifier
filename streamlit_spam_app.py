@@ -8,6 +8,8 @@ from catboost import CatBoostClassifier
 
 # Theme Selector
 theme = st.sidebar.radio("🎨 Select Theme", ["Light", "Dark"])
+
+# Inject custom CSS based on theme selection
 if theme == "Dark":
     st.markdown(
         """
@@ -15,9 +17,6 @@ if theme == "Dark":
         .main {
             background-color: #121212;
             color: white;
-        }
-        .stApp {
-            background-color: #121212;
         }
         .stButton>button {
             background-color: #444;
@@ -41,6 +40,9 @@ if theme == "Dark":
         .stFileUploader {
             border: 2px dashed #888;
             border-radius: 8px;
+        }
+        .stMarkdown {
+            color: white;
         }
         </style>
         """,
@@ -74,6 +76,9 @@ else:
         .stFileUploader {
             border: 2px dashed #4CAF50;
             border-radius: 8px;
+        }
+        .stMarkdown {
+            color: black;
         }
         </style>
         """,
