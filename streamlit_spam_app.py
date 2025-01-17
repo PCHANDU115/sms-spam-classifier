@@ -8,7 +8,6 @@ from catboost import CatBoostClassifier
 
 # Theme Selector
 theme = st.sidebar.radio("🎨 Select Theme", ["Light", "Dark"])
-
 if theme == "Dark":
     st.markdown(
         """
