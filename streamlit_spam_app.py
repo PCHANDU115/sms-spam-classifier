@@ -154,13 +154,36 @@ st.title("📱 SMS Spam Detection Web App")
 st.sidebar.title("🌟 Navigation")
 option = st.sidebar.selectbox("Choose an action", ["Train Models", "Predict SMS"])
 
+# Help / Instructions
+st.sidebar.header("❓ Help / Instructions")
+st.sidebar.markdown("""
+### How to Use:
+
+#### 1. **Train Models**:
+- Upload a CSV with **two columns**: `text` (SMS content) and `label` (ham/spam).
+- Click **Train Models** to train **SVM** and **CatBoost** classifiers.
+
+#### 2. **Predict SMS**:
+- Enter an SMS message.
+- Choose a model (**SVM** or **CatBoost**).
+- Click **Predict** to classify the message as **Spam** or **Ham**.
+""")
+
+# Objective Section
+st.sidebar.header("🎯 Objective")
+st.sidebar.markdown("""
+The objective of this app is to provide an easy-to-use interface for:
+- **Training** machine learning models (SVM and CatBoost) for SMS spam detection.
+- **Predicting** whether an SMS message is spam or ham using the trained models.
+""")
+
 if option == "Train Models":
     st.header("🔧 Train Models")
     uploaded_file = st.file_uploader("📂 Upload a CSV file with 'text' and 'label' columns", type="csv")
     if uploaded_file is not None:
         data = pd.read_csv(uploaded_file)
         if "text" in data.columns and "label" in data.columns:
-            with st.spinner("Training models... Please wait."):
+            with st.spinner("Training models... Please wait.") :
                 result = train_models(data)
             st.success("✅ Models trained successfully!")
             st.json(result)
@@ -174,7 +197,7 @@ elif option == "Predict SMS":
     if st.button("🔍 Predict"):
         if message:  # Check if a message is entered
             if vectorizer and (svm_model or catboost_model):
-                with st.spinner("Predicting... Please wait."):
+                with st.spinner("Predicting... Please wait.") :
                     prediction = predict_message(message, model_name)
                 st.success(f"📋 The message is classified as: **{prediction}**")
             else:
